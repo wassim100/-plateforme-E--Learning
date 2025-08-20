@@ -18,7 +18,18 @@ namespace Illuminate\Database\Eloquent {
     }
     if (!class_exists(Model::class)) {
         abstract class Model {
-            public function newQuery() { return new Builder(); }
+            public function newQuery() {
+                // Return a lightweight fluent proxy to satisfy analyzers without invoking the real Builder constructor.
+                return new class {
+                    public function where($column, $operator = null, $value = null) { return $this; }
+                    public function when($value, callable $callback) { $callback($this, $value); return $this; }
+                    public function orderByDesc($column) { return $this; }
+                    public function paginate($perPage = 15) { return $this; }
+                    public function withQueryString() { return $this; }
+                    public function count() { return 0; }
+                    public function __call($name, $arguments) { return $this; }
+                };
+            }
             public function fill(array $attributes) { return $this; }
             public function save(array $options = []) { return true; }
             public function delete() { return true; }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,19 @@ Route::view('/profile', 'front.pages.profile');
 // simple placeholder for search results (reuses courses list for now)
 Route::view('/search', 'front.pages.courses.index');
 
+// Auth routes
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'showRegister']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
+
 /*
 |--------------------------------------------------------------------------
 | Admin routes (placeholder views, controllers later)
 |--------------------------------------------------------------------------
 */
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\EnsureAdmin::class])->group(function () {
     Route::view('/', 'admin.pages.dashboard');
     // Resource routes
     Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class)

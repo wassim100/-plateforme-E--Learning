@@ -20,11 +20,17 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         // Create a baseline user (no factories to avoid IDE analyzer false-positives)
-        User::query()->create([
+        $values = [
             'name' => 'Test User',
-            'email' => 'test@example.com',
             'password' => Hash::make('password'),
-        ]);
+        ];
+        if (\Schema::hasColumn('users', 'role')) {
+            $values['role'] = 'admin';
+        }
+        User::query()->updateOrCreate(
+            ['email' => 'test@example.com'],
+            $values
+        );
 
         // Seed categories with Faker directly (keeps data realistic, avoids factory chain warnings)
         $faker = FakerFactory::create();

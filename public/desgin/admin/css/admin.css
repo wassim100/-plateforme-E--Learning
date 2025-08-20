@@ -1,0 +1,66 @@
+/* Admin overrides extending the existing theme */
+.dashboard { padding: 2rem; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 1rem; margin-bottom: 2rem; }
+.admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+.card { background: var(--white); border-radius: .6rem; border: var(--border); overflow: visible; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+.card .card-header { padding: 1rem 1.5rem; border-bottom: var(--border); background: var(--light-bg); position: sticky; top: 0; z-index: 5; }
+.card .card-body { padding: 1.25rem 1.5rem 1.5rem; }
+.table { width:100%; border-collapse: collapse; font-size:1rem; table-layout: auto; }
+.table th,.table td { text-align:left; padding:.75rem 1rem; border-bottom: var(--border); }
+.table th { white-space: nowrap; }
+.table td { white-space: normal; word-break: break-word; vertical-align: top; }
+.table tbody tr:nth-child(even){ background:#fcfcfc; }
+.table tbody tr:hover { background: #f7f7f7; }
+.table-wrap { overflow:auto; max-width: 100%; }
+/* common narrow ID column */
+.table td:first-child, .table th:first-child { width: 90px; }
+.quick-actions .actions { display:flex; gap:1rem; flex-wrap:wrap; }
+body.dark .card .card-header { background: var(--black); }
+@media (max-width: 1100px) { .admin-grid { grid-template-columns: 1fr; } }
+
+/* header row for list pages */
+.header-row { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.header-row .header-left { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+.a-search { display:flex; align-items:center; gap:.5rem; }
+.a-search input[type="text"] { padding:.45rem .65rem; border:var(--border); border-radius:.4rem; min-width:240px; }
+.admin .a-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.36rem .65rem; border-radius:.4rem; background:var(--light-bg); color:var(--black); border:var(--border); white-space:nowrap; line-height:1.1; font-size:.9rem; }
+.admin .a-btn:hover { filter:brightness(.98); }
+.admin .a-btn-primary { background: #7d3c98; color:#fff; border-color: transparent; }
+.admin .a-btn-danger { background: transparent; color:#d63031; border:1px solid #d63031; }
+.admin .a-btn-danger:hover { background:#d63031; color:#fff; }
+.admin .a-btn-icon { padding:.24rem .4rem; }
+.admin .a-btn-sm { padding:.24rem .4rem; font-size:.82rem; }
+.a-badge { display:inline-block; padding:.18rem .45rem; border-radius:.3rem; font-size:.78rem; line-height:1; white-space:nowrap; }
+.a-badge-success { background:#00b894; color:#fff; }
+.a-badge-danger { background:#d63031; color:#fff; }
+.admin .a-actions { display:flex; gap:.35rem; align-items:center; justify-content:flex-end; flex-wrap:nowrap; white-space:nowrap; }
+.table th.col-actions { text-align:right; }
+.admin .a-actions .a-btn { max-width: 100%; }
+.admin .a-btn i { font-size: .85em; line-height: 1; }
+.col-actions { width: 170px; }
+
+/* toolbar counters */
+.toolbar-counters { display:flex; gap:.4rem; flex-wrap:wrap; }
+.kpi-pill { background:#f0f3f7; border:1px solid #e3e6ea; color:#333; padding:.25rem .5rem; border-radius:999px; font-size:.82rem; }
+.kpi-pill.ok { background:#e8fbf6; border-color:#b7f3e4; color:#007d63; }
+.kpi-pill.no { background:#ffecec; border-color:#ffd0d0; color:#b10000; }
+.per-page { display:inline-flex; align-items:center; gap:.4rem; margin-right:.5rem; }
+.per-label { font-size:.82rem; color:#555; }
+.per-page select { padding:.3rem .5rem; border:var(--border); border-radius:.35rem; }
+.table-meta { margin-bottom:.6rem; color:#666; font-size:.9rem; }
+
+/* If any slider/hero arrows leak into admin, hide them here */
+.admin .swiper-button-prev, .admin .swiper-button-next { display:none !important; }
+.form-vertical .box { margin-bottom: 1rem; }
+.form-vertical label { display:block; margin-bottom:.25rem; font-weight:600; }
+.form-vertical input[type="text"], .form-vertical textarea { width:100%; padding:.6rem .8rem; border:var(--border); border-radius:.4rem; }
+.form-vertical .switch { display:flex; align-items:center; gap:.5rem; }
+.form-vertical .actions { display:flex; gap:.5rem; }
+.pagination-wrap { margin-top: 1rem; display:flex; justify-content:center; align-items:center; }
+@media (max-width: 640px) { .hide-sm { display:none; } }
+
+/* Laravel pagination chevrons fix (Tailwind view without Tailwind CSS) */
+.admin nav[role="navigation"] svg { width: 1.1rem; height: 1.1rem; display: inline-block; vertical-align: middle; }
+.admin nav[role="navigation"] a,
+.admin nav[role="navigation"] span { font-size: 1.2rem; padding: .2rem .4rem; line-height: 1.2; }
+.admin nav[role="navigation"] > div { display: inline-flex; gap: .5rem; align-items: center; flex-wrap: wrap; }

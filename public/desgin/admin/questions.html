@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin • Questions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="./css/admin.css">
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <section class="flex">
+      <a href="/admin/" class="logo">Educa Admin</a>
+      <form class="search-form" onsubmit="return false;">
+        <input type="text" placeholder="Rechercher une question..." maxlength="100">
+        <button type="button" class="fas fa-search"></button>
+      </form>
+      <div class="icons">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <div id="search-btn" class="fas fa-search"></div>
+        <div id="user-btn" class="fas fa-user"></div>
+        <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+      <div class="profile">
+        <img src="../images/pic-1.jpg" class="image" alt="">
+        <h3 class="name">Admin</h3>
+        <p class="role">administrator</p>
+        <a href="/admin/" class="btn">Dashboard</a>
+      </div>
+    </section>
+  </header>
+
+  <div class="side-bar">
+    <div id="close-btn"><i class="fas fa-times"></i></div>
+    <div class="profile">
+      <img src="../images/pic-1.jpg" class="image" alt="">
+      <h3 class="name">Admin</h3>
+      <p class="role">administrator</p>
+      <a href="/admin/" class="btn">Dashboard</a>
+    </div>
+    <nav class="navbar">
+      <a href="/admin/"><i class="fas fa-gauge"></i><span>Dashboard</span></a>
+      <a href="/admin/users.html"><i class="fas fa-users"></i><span>Utilisateurs</span></a>
+      <a href="/admin/categories.html"><i class="fas fa-layer-group"></i><span>Catégories</span></a>
+      <a href="/admin/courses.html"><i class="fas fa-book"></i><span>Courses</span></a>
+      <a href="/admin/enrollments.html"><i class="fas fa-ticket"></i><span>Enrollments</span></a>
+      <a href="/admin/quizzes.html"><i class="fas fa-question"></i><span>Quizzes</span></a>
+      <a href="/admin/questions.html" class="active"><i class="fas fa-list"></i><span>Questions</span></a>
+      <a href="/admin/answers.html"><i class="fas fa-check"></i><span>Réponses</span></a>
+      <a href="/home.html"><i class="fas fa-globe"></i><span>Site (Front)</span></a>
+    </nav>
+  </div>
+
+  <section class="dashboard">
+    <h1 class="heading">Questions</h1>
+    <div class="card">
+      <div class="card-header"><h3>Liste (placeholder)</h3></div>
+      <div class="card-body table-wrap">
+        <table class="table">
+          <thead><tr><th>ID</th><th>Question</th><th>Quiz</th></tr></thead>
+          <tbody>
+            <tr><td colspan="3">Bientôt: CRUD questions ici.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

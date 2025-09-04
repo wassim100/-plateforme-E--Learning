@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
 
 :root{
-   --main-color:#8e44ad;
+   --main-color:#6c3bbd; /* slightly deeper purple */
    --red:#e74c3c;
-   --orange:#f39c12;
+   --orange:#ff9800;     /* brighter accent for buttons */
    --light-color:#888;
    --light-bg:#eee;
    --black:#2c3e50;
@@ -56,6 +56,10 @@ body.dark{
 }
 
 body.active{
+   padding-left: 0;
+}
+
+body.no-sidebar{
    padding-left: 0;
 }
 
@@ -182,6 +186,38 @@ section{
    color: var(--main-color);
 }
 
+.header .flex .main-nav{
+   display: flex;
+   gap: 2rem;
+   margin: 0 2rem;
+}
+
+.header .flex .main-nav a{
+   font-size: 1.6rem;
+   color: var(--light-color);
+   text-transform: capitalize;
+}
+
+.header .flex .main-nav a:hover{
+   color: var(--black);
+}
+
+.header .flex .auth-actions{
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+}
+
+.header .flex .auth-actions .welcome{
+   font-size: 1.6rem;
+   color: var(--black);
+}
+
+.header .flex .icons{
+   display: flex;
+   gap: 1rem;
+}
+
 .header .flex .icons div{
    font-size: 2rem;
    color:var(--black);
@@ -251,6 +287,8 @@ section{
    height: 100vh;
    border-right: var(--border);
    z-index: 1200;
+   overflow-y: auto;
+   padding-bottom: 3rem;
 }
 
 .side-bar #close-btn{
@@ -997,246 +1035,11 @@ section{
    font-size: 1.7rem;
 }
 
-.teachers .box-container .box .tutor{
-   display: flex;
-   align-items: center;
-   gap:2rem;
-   margin-bottom: 1.5rem;
-}
-
-.teachers .box-container .box .tutor img{
-   height: 5rem;
-   width: 5rem;
-   border-radius: 50%;
-}
-
-.teachers .box-container .box .tutor h3{
-   font-size: 2rem;
-   color: var(--black);
-   margin-bottom: .2rem;
-}
-
-.teachers .box-container .box .tutor span{
-   font-size: 1.6rem;
-   color: var(--light-color);
-}
-
-.teachers .box-container .box p{
-   padding: .5rem 0;
-   font-size: 1.7rem;
-   color: var(--light-color);
-}
-
-.teachers .box-container .box p span{
-   color: var(--main-color);
-}
-
-.teacher-profile .details{
-   text-align: center;
-   background-color: var(--white);
-   border-radius: .5rem;
-   padding: 2rem;
-}
-
-.teacher-profile .details .tutor img{
-   height: 10rem;
-   width: 10rem;
-   border-radius: 50%;
-   object-fit: cover;
-   margin-bottom: 1rem;
-}
-
-.teacher-profile .details .tutor h3{
-   font-size: 2rem;
-   color: var(--black);
-}
-
-.teacher-profile .details .tutor span{
-   color: var(--light-color);
-   font-size: 1.7rem;
-}
-
-.teacher-profile .details .flex{
-   display: flex;
-   flex-wrap: wrap;
-   gap: 1.5rem;
-   margin-top: 2rem;
-}
-
-.teacher-profile .details .flex p{
-   flex: 1 1 20rem;
-   border-radius: .5rem;
-   background-color: var(--light-bg);
-   padding: 1.2rem 2rem;
-   font-size: 1.8rem;
-   color: var(--light-color);
-}
-
-.teacher-profile .details .flex p span{
-   color: var(--main-color);
-}
-
-.user-profile .info{
-   background-color: var(--white);
-   border-radius: .5rem;
-   padding: 2rem;
-}
-
-.user-profile .info .user{
-   text-align: center;
-   margin-bottom: 2rem;
-   padding: 1rem;
-}
-
-.user-profile .info .user img{
-   height: 10rem;
-   width: 10rem;
-   border-radius: 50%;
-   object-fit: cover;
-   margin-bottom: 1rem;
-}
-
-.user-profile .info .user h3{
-   font-size: 2rem;
-   color: var(--black);
-}
-
-.user-profile .info .user p{
-   font-size: 1.7rem;
-   color: var(--light-color);
-   padding: .3rem 0;
-}
-
-.user-profile .info .box-container{
-   display: flex;
-   flex-wrap: wrap;
-   gap: 1.5rem;
-}
-
-.user-profile .info .box-container .box{
-   background-color: var(--light-bg);
-   border-radius: .5rem;
-   padding: 2rem;
-   flex: 1 1 25rem;
-}
-
-.user-profile .info .box-container .box .flex{
-   display: flex;
-   align-items: center;
-   gap: 2rem;
-   margin-bottom: 1rem;
-}
-
-.user-profile .info .box-container .box .flex i{
-   font-size:2rem;
-   color: var(--white);
-   background-color: var(--black);
-   text-align: center;
-   border-radius: .5rem;
-   height: 5rem;
-   width: 5rem;
-   line-height: 4.9rem;
-}
-
-.user-profile .info .box-container .box .flex span{
-   font-size: 2.5rem;
-   color: var(--main-color);
-}
-
-.user-profile .info .box-container .box .flex p{
-   color: var(--light-color);
-   font-size: 1.7rem;
-}
-
-.contact .row{
-   display: flex;
-   align-items: center;
-   flex-wrap: wrap;
-   gap: 1.5rem;
-}
-
-.contact .row .image{
-   flex: 1 1 50rem;
-}
-
-.contact .row .image img{
-   width: 100%;
-}
-
-.contact .row form{
-   flex: 1 1 30rem;
-   background-color: var(--white);
-   padding: 2rem;
-   text-align: center;
-}
-
-.contact .row form h3{
-   margin-bottom: 1rem;
-   text-transform: capitalize;
-   color:var(--black);
-   font-size: 2.5rem;
-}
-
-.contact .row form .box{
-   width: 100%;
-   border-radius: .5rem;
-   background-color: var(--light-bg);
-   margin: 1rem 0;
-   padding: 1.4rem;
-   font-size: 1.8rem;
-   color: var(--black);
-}
-
-.contact .row form textarea{
-   height: 20rem;
-   resize: none;
-}
-
-.contact .box-container{
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-   gap:1.5rem;
-   justify-content: center;
-   align-items: flex-start;
-   margin-top: 3rem;
-}
-
-.contact .box-container .box{
-   text-align: center;
-   background-color: var(--white);
-   border-radius: .5rem;
-   padding: 3rem;
-}
-
-.contact .box-container .box i{
-   font-size: 3rem;
-   color: var(--main-color);
-   margin-bottom: 1rem;
-}
-
-.contact .box-container .box h3{
-   font-size: 2rem;
-   color:var(--black);
-   margin: 1rem 0;
-}
-
-.contact .box-container .box a{
-   display: block;
-   padding-top: .5rem;
-   font-size: 1.8rem;
-   color: var(--light-color);
-}
-
-.contact .box-container .box a:hover{
-   text-decoration: underline;
-   color:var(--black);
-}
-
 .form-container{
-   min-height: calc(100vh - 20rem);
    display: flex;
    align-items: center;
    justify-content: center;
+   min-height: calc(100vh - 20rem);
 }
 
 .form-container form{
@@ -1251,6 +1054,7 @@ section{
    text-transform: capitalize;
    color: var(--black);
    text-align: center;
+   margin-bottom: 1rem;
 }
 
 .form-container form p{
@@ -1264,13 +1068,151 @@ section{
 }
 
 .form-container form .box{
+   width: 100%;
+   border-radius: .5rem;
+   margin: 1rem 0;
    font-size: 1.8rem;
    color: var(--black);
-   border-radius: .5rem;
    padding: 1.4rem;
    background-color: var(--light-bg);
+}
+
+.teachers .box-container .box .tutor{
+   display: flex;
+   align-items: center;
+   gap: 1.5rem;
+   margin-bottom: 2.5rem;
+}
+
+.teachers .box-container .box .tutor img{
+   height: 5rem;
+   width: 5rem;
+   border-radius: 50%;
+   object-fit: cover;
+}
+
+.teachers .box-container .box .tutor h3{
+   font-size: 1.8rem;
+   color: var(--black);
+   margin-bottom: .2rem;
+}
+
+.teachers .box-container .box .tutor span{
+   font-size: 1.3rem;
+   color:var(--light-color);
+}
+
+.teachers .box-container .box .thumb{
+   position: relative;
+}
+
+.teachers .box-container .box .thumb span{
+   position: absolute;
+   top:1rem; left: 1rem;
+   border-radius: .5rem;
+   padding: .5rem 1.5rem;
+   background-color: rgba(0,0,0,.3);
+   color: #fff;
+   font-size: 1.5rem;
+}
+
+.teachers .box-container .box .thumb img{
    width: 100%;
-   margin: 1rem 0;
+   height: 20rem;
+   object-fit: cover;
+   border-radius: .5rem;
+}
+
+.teachers .box-container .box .title{
+   font-size: 2rem;
+   color: var(--black);
+   padding-bottom: .5rem;
+   padding-top: 1rem;
+}
+
+.teachers .more-btn{
+   text-align: center;
+   margin-top: 2rem;
+}
+
+.courses-table {
+    padding: 2rem;
+}
+
+.courses-table .table-container {
+    background-color: var(--white);
+    border-radius: .5rem;
+    padding: 2rem;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+.courses-table table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.courses-table th,
+.courses-table td {
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--black);
+    border-bottom: var(--border);
+}
+
+.courses-table th {
+    font-size: 1.8rem;
+    color: var(--light-color);
+    text-transform: capitalize;
+}
+
+.courses-table td {
+    vertical-align: middle;
+}
+
+.courses-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.courses-table tbody tr:hover {
+    background-color: var(--light-bg);
+}
+
+.courses-table .actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.courses-table .actions .btn,
+.courses-table .actions .option-btn,
+.courses-table .actions .delete-btn {
+    display: inline-block;
+    width: auto;
+    padding: .8rem 1.5rem;
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.courses-table .actions form {
+    display: inline-block;
+    margin: 0;
+}
+
+.header .flex .main-nav{display:flex;gap:2rem;margin:0 2rem;}
+.header .flex .icons{display:flex;gap:1rem;}
+
+@media (max-width: 992px){
+  .header .flex .main-nav{
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--white);
+    border-bottom: var(--border);
+    display: none;
+    padding: 1rem 2rem;
+  }
+  .header .flex .main-nav.active{display:block;}
+  .header .flex .main-nav a{display:block;padding:1rem 0;}
 }
 
 

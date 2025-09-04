@@ -8,12 +8,12 @@
   <link rel="stylesheet" href="{{ asset('desgin/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('desgin/admin/css/admin.css') }}">
 </head>
-<body class="admin">
+<body class="admin {{ Route::currentRouteName() }} ">
+  @if (Auth::check() && Auth::user()->isAdmin())
   @include('admin.partials.header')
   @include('admin.partials.sidebar')
-  <main class="container">
-    @yield('content')
-  </main>
+  @endif
+  @yield('content')
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
   <script src="{{ asset('desgin/js/script.js') }}" defer></script>
   <script src="{{ asset('desgin/admin/js/admin.js') }}" defer></script>

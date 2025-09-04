@@ -3,12 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use App\Models\Category;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Faker\Factory as FakerFactory;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Quiz;
+use App\Models\Question;
+use App\Models\QuizResult;
 
 class DatabaseSeeder extends Seeder
 {
@@ -43,5 +44,23 @@ class DatabaseSeeder extends Seeder
                 'is_active' => $faker->boolean(85),
             ]);
         }
+
+        // Create a handful of quizzes with questions
+        Quiz::factory()
+            ->count(3)
+            ->create()
+            ->each(function (Quiz $quiz) use ($faker) {
+                // Attach questions
+                Question::factory()->count(8)->create(['quiz_id' => $quiz->id]);
+
+                // Create some results for a few users
+                $users = User::factory()->count(3)->create();
+                foreach ($users as $user) {
+                    QuizResult::factory()->create([
+                        'user_id' => $user->id,
+                        'quiz_id' => $quiz->id,
+                    ]);
+                }
+            });
     }
 }

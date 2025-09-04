@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
-    <link rel="stylesheet" href="/desgin/css/style.css">
-</head>
-<body>
-<div class="container" style="max-width:420px;margin:48px auto;padding:24px;border:1px solid #eee;border-radius:8px;">
-    <h2>Connexion</h2>
+@extends('admin.layouts.admin')
+@section('title','Connexion')
+@section('content')
+
+<section class="form-container">
     <form method="POST" action="/login">
+        <h3>Connexion</h3>
         <?php echo csrf_field(); ?>
         <div class="inputBox">
             <label>Email</label>
-            <input type="email" name="email" required value="<?php echo e(old('email')); ?>">
+            <input type="email" name="email" required class="box" value="<?php echo e(old('email')); ?>">
         </div>
         <div class="inputBox">
             <label>Mot de passe</label>
-            <input type="password" name="password" required>
+            <input type="password" name="password" required class="box" >
         </div>
         <div class="flex">
             <label style="display:flex;gap:8px;align-items:center;">
@@ -30,8 +25,9 @@
             </div>
         <?php endif; ?>
         <button type="submit" class="inline-btn">Se connecter</button>
+        <p style="margin-top:12px;">Pas de compte? <a href="/register">Inscription</a></p>
     </form>
-    <p style="margin-top:12px;">Pas de compte? <a href="/register">Inscription</a></p>
-</div>
-</body>
-</html>
+    
+</section>
+@endsection
+

@@ -64,3 +64,126 @@ body.dark .card .card-header { background: var(--black); }
 .admin nav[role="navigation"] a,
 .admin nav[role="navigation"] span { font-size: 1.2rem; padding: .2rem .4rem; line-height: 1.2; }
 .admin nav[role="navigation"] > div { display: inline-flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+
+/* begin admin user */
+.admin_user .table-container {
+    overflow-x: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.admin_user .users-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.admin_user .users-table th,
+.admin_user .users-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.admin_user .users-table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #374151;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+}
+
+.admin_user .users-table tr:hover {
+    background-color: #f9fafb;
+}
+
+.admin_user .users-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin_user .action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.admin_user .action-buttons .btn,
+.admin_user .action-buttons .option-btn,
+.admin_user .action-buttons .delete-btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin_user .action_btn_table{
+    flex: 1;
+}
+.admin_user .action-buttons .btn {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.admin_user .action-buttons .btn:hover {
+    background-color: #2563eb;
+}
+
+.admin_user .action-buttons .option-btn {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.admin_user .action-buttons .option-btn:hover {
+    background-color: #d97706;
+}
+
+.admin_user .action-buttons .delete-btn {
+    background-color: #ef4444;
+    color: white;
+}
+
+.admin_user .action-buttons .delete-btn:hover {
+    background-color: #dc2626;
+}
+
+.admin_user.empty-state {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.admin_user .empty-state p {
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .admin_user .action-buttons {
+        flex-direction: column;
+    }
+
+    .admin_user .action-buttons .btn,
+    .admin_user .action-buttons .option-btn,
+    .admin_user .action-buttons .delete-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+/* End admin user */
+
+body.login,body.register {
+  padding: 0px;
+}
+body.login button,body.register button{
+    margin: auto;
+    display: block;
+    margin-top: 2rem;
+}

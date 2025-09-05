@@ -41,7 +41,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 /*
 |--------------------------------------------------------------------------
-| Admin routes (placeholder views, controllers later)
+| Admin routes
 |--------------------------------------------------------------------------
 */
 Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\EnsureAdmin::class])->name('admin.')->group(function () {
@@ -53,12 +53,6 @@ Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\EnsureAdmin::cl
     Route::get('/quiz/{quiz}/export', [\App\Http\Controllers\Admin\QuizDashboardController::class, 'export'])->name('quiz.export');
     Route::get('/quiz/result/{result}', [\App\Http\Controllers\Admin\QuizDashboardController::class, 'getResultDetails'])->name('quiz.result.details');
 
-    // Quiz Management
-    Route::resource('quizzes', \App\Http\Controllers\Admin\QuizController::class);
-    Route::resource('questions', \App\Http\Controllers\Admin\QuestionController::class);
-    Route::get('/quiz-dashboard', [App\Http\Controllers\Admin\QuizDashboardController::class, 'index'])->name('quiz.dashboard');
-    Route::get('/quiz-dashboard/{quiz}', [App\Http\Controllers\Admin\QuizDashboardController::class, 'quizDetails'])->name('quiz.details');
-    
     // Resource routes
     Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class)
         ->names('categories');
@@ -70,7 +64,6 @@ Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\EnsureAdmin::cl
         ->names('questions');
     Route::resource('answers', App\Http\Controllers\Admin\AnswerController::class)
         ->names('answers');
-    // Placeholder views for others
     Route::resource('users', App\Http\Controllers\Admin\UserController::class)
         ->names('users');
     Route::resource('enrollments', App\Http\Controllers\Admin\EnrollmentController::class)

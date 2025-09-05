@@ -49,11 +49,11 @@
         <div class="box">
             <h3 class="title">Distribution des scores</h3>
             <div class="chart-container">
-                @foreach($scoreDistribution as $range => $count)
+        @foreach($scoreDistribution as $range => $count)
                 <div class="score-bar">
                     <span class="range">{{ $range }}</span>
                     <div class="bar">
-                        <div class="fill" style="width: {{ $stats['total_attempts'] > 0 ? ($count / $stats['total_attempts']) * 100 : 0 }}%"></div>
+            <div class="fill" style="--bar-width: {{ $stats['total_attempts'] > 0 ? number_format(($count / max(1,$stats['total_attempts'])) * 100, 2) : 0 }}%"></div>
                     </div>
                     <span class="count">{{ $count }}</span>
                 </div>
@@ -117,7 +117,7 @@
                             <td>{{ $result->time_taken ?? 'N/A' }}min</td>
                             <td>{{ $result->completed_at->format('d/m/Y H:i') }}</td>
                             <td>
-                                <a href="#" class="inline-option-btn" onclick="viewDetails({{ $result->id }})">Détails</a>
+                                <a href="#" class="inline-option-btn" data-result-id="{{ $result->id }}">Détails</a>
                             </td>
                         </tr>
                         @endforeach
@@ -210,6 +210,7 @@
     height: 100%;
     background: var(--main-color);
     transition: width 0.3s ease;
+    width: var(--bar-width, 0%);
 }
 
 .score-bar .count {
@@ -360,5 +361,17 @@ window.onclick = function(event) {
         modal.style.display = 'none';
     }
 }
+
+// Delegate click for result details to avoid inline JS parsing issues
+document.addEventListener('click', function(e) {
+    const link = e.target.closest('[data-result-id]');
+    if (link) {
+        e.preventDefault();
+        const id = parseInt(link.getAttribute('data-result-id'));
+        if (!Number.isNaN(id)) {
+            viewDetails(id);
+        }
+    }
+});
 </script>
 @endsection

@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 
-@section('admin')
+@section('content')
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -33,7 +33,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Prix:</label>
-                            <p>{{ $course->price }} €</p>
+                            <p>{{ $course->price ? $course->price . ' €' : 'Gratuit' }}</p>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Catégorie:</label>
@@ -51,7 +51,7 @@
                     <div class="col-md-4">
                         @if($course->image)
                             <label class="form-label">Image:</label>
-                            <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}" class="img-fluid rounded">
+                            <img src="{{ Storage::url($course->image) }}" alt="{{ $course->title }}" class="img-fluid rounded">
                         @endif
                     </div>
                 </div>

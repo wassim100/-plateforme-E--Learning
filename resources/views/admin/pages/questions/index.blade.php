@@ -1,57 +1,53 @@
 @extends('admin.layouts.admin')
-
-@section('title', 'Gestion des Questions')
-
+@section('title', 'Questions')
 @section('content')
-    <div class="content-wrapper">
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Liste des questions</h1>
-                    </div>
-                </div>
+<section class="courses-table">
+    <h1 class="heading">Questions</h1>
+        <div class="header-row">
+            <div class="header-left">
+                <form action="{{ route('admin.questions.index') }}" method="GET" class="a-search">
+                    <input type="text" name="q" value="{{ request('q','') }}" placeholder="Rechercher par texte">
+                    <button type="submit" class="a-btn">Chercher</button>
+                    @if(request()->filled('q'))
+                        <a href="{{ route('admin.questions.index') }}" class="a-btn">Réinitialiser</a>
+                    @endif
+                </form>
+            </div>
+            <div class="header-right">
+                <a href="{{ route('admin.questions.create') }}" class="a-btn a-btn-primary">Ajouter une question</a>
             </div>
         </div>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="card">
-                    <div class="card-header">
-                        <a href="{{ route('admin.questions.create') }}" class="btn btn-success">Ajouter une question</a>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Texte de la question</th>
-                                    <th>Quiz</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($questions as $question)
-                                    <tr>
-                                        <td>{{ $question->id }}</td>
-                                        <td>{{ $question->text }}</td>
-                                        <td>{{ $question->quiz->title ?? 'N/A' }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.questions.show', $question) }}" class="btn btn-info btn-sm">Voir</a>
-                                            <a href="{{ route('admin.questions.edit', $question) }}" class="btn btn-primary btn-sm">Modifier</a>
-                                            <form action="{{ route('admin.questions.destroy', $question) }}" method="POST" style="display:inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="table-container">
+                <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Texte</th>
+                        <th>Quiz</th>
+                            <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($questions as $question)
+                    <tr>
+                        <td>{{ $question->id }}</td>
+                        <td>{{ $question->text }}</td>
+                        <td>{{ $question->quiz->title ?? 'N/A' }}</td>
+                                    <td class="actions">
+                                        <a href="{{ route('admin.questions.show', $question) }}" class="btn">Voir</a>
+                                        <a href="{{ route('admin.questions.edit', $question) }}" class="option-btn">Modifier</a>
+                                        <form action="{{ route('admin.questions.destroy', $question) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Supprimer cette question ?');">
+                                @csrf
+                                @method('DELETE')
+                                            <button type="submit" class="delete-btn">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
+</section>
 @endsection
 

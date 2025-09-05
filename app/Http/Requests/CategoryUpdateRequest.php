@@ -25,7 +25,6 @@ class CategoryUpdateRequest extends FormRequest
     $id = is_object($category) ? $category->id : (is_numeric($category) ? (int)$category : null);
         return [
             'name' => 'required|string|max:100',
-            'slug' => 'required|string|max:120|unique:categories,slug,' . $id,
             'description' => 'nullable|string',
             'is_active' => 'sometimes|boolean',
         ];

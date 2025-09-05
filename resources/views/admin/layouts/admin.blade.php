@@ -13,7 +13,9 @@
   @include('admin.partials.header')
   @include('admin.partials.sidebar')
   @endif
-  @yield('content')
+  <main class="admin-content">
+    @yield('content')
+  </main>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
   <script src="{{ asset('desgin/js/script.js') }}" defer></script>
   <script src="{{ asset('desgin/admin/js/admin.js') }}" defer></script>

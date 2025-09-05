@@ -26,6 +26,13 @@
         <a href="#"><i class="fab fa-linkedin"></i> linkedin</a>
       </div>
     </div>
-    <div class="credit">© copyright @ 2022 by <span>mr. web designer</span></div>
+    <div class="newsletter">
+      <h4>Subscribe to our newsletter</h4>
+      <form action="#" method="post" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button class="option-btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="credit">© {{ date('Y') }} {{ config('app.name', 'Educa') }} · All rights reserved</div>
   </section>
 </footer>

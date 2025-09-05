@@ -25,7 +25,7 @@ class CategoryController extends Controller
         if ($q !== '') {
             $query->where(function($sub) use ($q) {
                 $sub->where('name', 'like', "%$q%")
-                    ->orWhere('slug', 'like', "%$q%");
+                     ->orWhere('description', 'like', "%$q%");
             });
         }
 
@@ -58,7 +58,6 @@ class CategoryController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:100',
-            'slug' => 'required|string|max:120|unique:categories,slug',
             'description' => 'nullable|string',
             'is_active' => 'sometimes|boolean',
         ]);
@@ -93,7 +92,6 @@ class CategoryController extends Controller
         $id = $category->id;
         $data = $request->validate([
             'name' => 'required|string|max:100',
-            'slug' => 'required|string|max:120|unique:categories,slug,' . $id,
             'description' => 'nullable|string',
             'is_active' => 'sometimes|boolean',
         ]);

@@ -3,8 +3,20 @@
 @section('content')
 <section class="courses-table">
     <h1 class="heading">Liste Des Cours</h1>
-
-    <a href="{{ route('admin.courses.create') }}" class="btn" style="width: 100%; text-align: center; margin-bottom: 2rem;">Ajouter Un Cours</a>
+    <div class="header-row">
+        <div class="header-left">
+            <form action="{{ route('admin.courses.index') }}" method="GET" class="a-search">
+                <input type="text" name="q" value="{{ $q ?? '' }}" placeholder="Rechercher par nom de cours">
+                <button type="submit" class="a-btn">Chercher</button>
+                @if(($q ?? '') !== '')
+                    <a href="{{ route('admin.courses.index') }}" class="a-btn">Réinitialiser</a>
+                @endif
+            </form>
+        </div>
+        <div class="header-right">
+            <a href="{{ route('admin.courses.create') }}" class="a-btn a-btn-primary">Ajouter un cours</a>
+        </div>
+    </div>
 
     <div class="table-container">
         <table>
@@ -24,7 +36,7 @@
                         <td>{{ $course->id }}</td>
                         <td>
                             @if($course->image)
-                            <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}" style="width: 100px; height: auto; object-fit: cover; border-radius: 5px;">
+                            <img src="{{ Storage::url($course->image) }}" alt="{{ $course->title }}" style="width: 100px; height: auto; object-fit: cover; border-radius: 5px;">
                             @else
                             <span>Pas d'image</span>
                             @endif

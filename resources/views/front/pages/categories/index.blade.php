@@ -11,7 +11,7 @@
             <p style="color: var(--light-color); margin: .5rem 0 1rem;">{{ Str::limit($cat->description, 90) }}</p>
             <div class="flex" style="justify-content: space-between; align-items: center;">
                <span>{{ $cat->courses_count }} cours</span>
-               <a href="{{ url('/courses?category='.$cat->slug) }}" class="inline-btn">Voir</a>
+               <a href="{{ url('/courses?category='.$cat->id) }}" class="inline-btn">Voir</a>
             </div>
          </div>
       @empty

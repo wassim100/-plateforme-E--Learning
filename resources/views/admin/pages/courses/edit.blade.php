@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 
-@section('admin')
+@section('content')
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -17,11 +17,11 @@
         </div>
         <!--end breadcrumb-->
 
-        <div class="card">
+    <div class="card" style="max-width: 820px; margin: 0 auto;">
             <div class="card-body">
                 <h5 class="card-title">Modifier le Cours</h5>
                 <hr/>
-                <form action="{{ route('admin.courses.update', $course) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.courses.update', $course) }}" method="POST" enctype="multipart/form-data" class="form-vertical">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="3">{{ $course->description }}</textarea>
+                        <textarea class="form-control" id="description" name="description" rows="6" style="resize: vertical; min-height: 120px;">{{ $course->description }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="price" class="form-label">Prix</label>
@@ -48,7 +48,7 @@
                         <label for="image" class="form-label">Photo</label>
                         <input type="file" class="form-control" id="image" name="image">
                         @if($course->image)
-                            <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}" class="img-thumbnail mt-2" style="width: 150px;">
+                            <img src="{{ Storage::url($course->image) }}" alt="{{ $course->title }}" class="img-thumbnail mt-2" style="width: 150px;">
                         @endif
                     </div>
                     <button type="submit" class="btn btn-primary">Mettre à jour</button>

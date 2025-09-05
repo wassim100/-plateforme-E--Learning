@@ -9,11 +9,17 @@ class Category extends \Illuminate\Database\Eloquent\Model
     use \Illuminate\Database\Eloquent\Factories\HasFactory;
 
     protected $fillable = [
-        'name', 'slug', 'description', 'is_active'
+    'name', 'description', 'is_active'
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
     ];
+
+    // Relationships
+    public function courses()
+    {
+        return $this->hasMany(\App\Models\Course::class);
+    }
 }
  

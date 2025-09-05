@@ -13,7 +13,6 @@ class CategoryFactory extends Factory
         $name = $this->faker->unique()->words(2, true);
         return [
             'name' => Str::title($name),
-            'slug' => Str::slug($name.'-'.Str::random(4)),
             'description' => $this->faker->optional()->sentence(10),
             'is_active' => $this->faker->boolean(85),
         ];

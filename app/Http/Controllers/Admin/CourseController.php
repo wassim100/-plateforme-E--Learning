@@ -6,17 +6,24 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 
 class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::with('category')->get();
-        return view('admin.pages.courses.index', compact('courses'));
+        $q = trim((string)$request->get('q', ''));
+        $query = Course::query()->with('category');
+        if ($q !== '') {
+            $query->where('title', 'like', "%$q%");
+        }
+        $courses = $query->get();
+        return view('admin.pages.courses.index', compact('courses','q'));
     }
 
     /**
@@ -41,15 +48,17 @@ class CourseController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $data = $request->except('image');
+        $data = $request->only(['title','description','price','category_id']);
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('courses', 'public');
+        /** @var UploadedFile|null $image */
+        $image = $request->file('image');
+        if ($image) {
+            $data['image'] = $image->store('courses', 'public');
         }
 
         Course::create($data);
 
-        return redirect()->route('admin.courses.index')
+        return Redirect::route('admin.courses.index')
             ->with('success', 'Cours créé avec succès.');
     }
 
@@ -83,19 +92,24 @@ class CourseController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $data = $request->except('image');
+        $data = $request->only(['title','description','price','category_id']);
 
-        if ($request->hasFile('image')) {
+        /** @var UploadedFile|null $image */
+        $image = $request->file('image');
+        if ($image) {
             // Delete old image
             if ($course->image) {
-                Storage::disk('public')->delete($course->image);
+                /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+                $disk = Storage::disk('public');
+                $disk->delete($course->image);
             }
-            $data['image'] = $request->file('image')->store('courses', 'public');
+            $data['image'] = $image->store('courses', 'public');
         }
 
-        $course->update($data);
+        $course->fill($data);
+        $course->save();
 
-        return redirect()->route('admin.courses.index')
+        return Redirect::route('admin.courses.index')
             ->with('success', 'Cours mis à jour avec succès.');
     }
 
@@ -105,11 +119,13 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         if ($course->image) {
-            Storage::disk('public')->delete($course->image);
+            /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+            $disk = Storage::disk('public');
+            $disk->delete($course->image);
         }
         $course->delete();
 
-        return redirect()->route('admin.courses.index')
+        return Redirect::route('admin.courses.index')
             ->with('success', 'Cours supprimé avec succès.');
     }
 }
